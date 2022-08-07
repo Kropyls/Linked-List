@@ -65,6 +65,17 @@ class LinkedList
     end
     nil
   end
+
+  def to_s
+    target = @head
+    return 'nil' if target.nil?
+
+    until target.next_node.nil?
+      print "(#{target.value}) -> "
+      target = target.next_node
+    end
+    print "(#{target.value}) -> nil"
+  end
 end
 
 # Node class to hold single node in list
@@ -79,6 +90,5 @@ end
 
 # Variable test conditions below
 list = LinkedList.new('test0', 'test1', 'test2', 'test3', 'test4')
-x = list.find('test2')
-y = list.find('test5')
+puts list.to_s
 a = 1
