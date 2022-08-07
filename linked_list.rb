@@ -43,6 +43,17 @@ class LinkedList
     @size -= 1
     popped
   end
+
+  def contains?(value)
+    target = @head
+    # safe nav operator in case @head is nil
+    until target&.next_node.nil?
+      return true if target.value == value
+
+      target = target.next_node
+    end
+    false
+  end
 end
 
 # Node class to hold single node in list
@@ -57,5 +68,6 @@ end
 
 # Variable test conditions below
 list = LinkedList.new('test0', 'test1', 'test2', 'test3', 'test4')
-x = list.pop
+x = list.contains?('test2')
+y = list.contains?('test5')
 a = 1
