@@ -28,9 +28,7 @@ class LinkedList
     raise "index #{index} is out of range" unless (0...@size).include?(index)
 
     target = @head
-    index.times do
-      target = target.next_node
-    end
+    index.times { target = target.next_node }
     target
   end
 
@@ -54,6 +52,19 @@ class LinkedList
     end
     false
   end
+
+  def find(value)
+    target = @head
+    index = 0
+    # safe nav operator in case @head is nil
+    until target&.next_node.nil?
+      return index if target.value == value
+
+      index += 1
+      target = target.next_node
+    end
+    nil
+  end
 end
 
 # Node class to hold single node in list
@@ -68,6 +79,6 @@ end
 
 # Variable test conditions below
 list = LinkedList.new('test0', 'test1', 'test2', 'test3', 'test4')
-x = list.contains?('test2')
-y = list.contains?('test5')
+x = list.find('test2')
+y = list.find('test5')
 a = 1
