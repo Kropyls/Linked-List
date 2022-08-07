@@ -6,6 +6,7 @@ class LinkedList
   attr_reader :count
 
   def initialize(*input)
+    @count = 0
     input&.each { |val| append(val) }
   end
 
@@ -14,6 +15,14 @@ class LinkedList
     @head = new_node if @head.nil?
     @tail&.next_node = new_node
     @tail = new_node
+    @count += 1
+  end
+
+  def prepend(value = nil)
+    new_node = Node.new(value, @head)
+    @tail = new_node if @tail.nil?
+    @head = new_node
+    @count += 1
   end
 end
 
@@ -29,4 +38,5 @@ end
 
 # Variable test conditions below
 list = LinkedList.new('test0', 'test1', 'test2')
+list.prepend('test3')
 a = 1
