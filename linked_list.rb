@@ -24,6 +24,16 @@ class LinkedList
     @head = new_node
     @size += 1
   end
+
+  def at(index)
+    raise "index #{index} is out of range" unless (0...@size).include?(index)
+
+    target = @head
+    index.times do
+      target = target.next_node
+    end
+    target.value
+  end
 end
 
 # Node class to hold single node in list
@@ -37,6 +47,6 @@ class Node
 end
 
 # Variable test conditions below
-list = LinkedList.new('test0', 'test1', 'test2')
-list.prepend('test3')
+list = LinkedList.new('test0', 'test1', 'test2', 'test3', 'test4')
+x = list.at(4)
 a = 1
