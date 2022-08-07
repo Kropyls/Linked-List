@@ -3,10 +3,10 @@
 # LinkedList class containing list and methods to access it
 class LinkedList
   attr_accessor :head, :tail
-  attr_reader :count
+  attr_reader :size
 
   def initialize(*input)
-    @count = 0
+    @size = 0
     input&.each { |val| append(val) }
   end
 
@@ -15,14 +15,14 @@ class LinkedList
     @head = new_node if @head.nil?
     @tail&.next_node = new_node
     @tail = new_node
-    @count += 1
+    @size += 1
   end
 
   def prepend(value = nil)
     new_node = Node.new(value, @head)
     @tail = new_node if @tail.nil?
     @head = new_node
-    @count += 1
+    @size += 1
   end
 end
 
