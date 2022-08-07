@@ -2,8 +2,7 @@
 
 # LinkedList class containing list and methods to access it
 class LinkedList
-  attr_accessor :head, :tail
-  attr_reader :size
+  attr_reader :size, :head, :tail
 
   def initialize(*input)
     @size = 0
@@ -32,7 +31,17 @@ class LinkedList
     index.times do
       target = target.next_node
     end
-    target.value
+    target
+  end
+
+  def pop
+    raise "Can't pop an empty list" if @size.zero?
+
+    popped = @tail
+    @tail = at(@size - 2)
+    @tail.next_node = nil
+    @size -= 1
+    popped
   end
 end
 
@@ -48,5 +57,5 @@ end
 
 # Variable test conditions below
 list = LinkedList.new('test0', 'test1', 'test2', 'test3', 'test4')
-x = list.at(4)
+x = list.pop
 a = 1
